@@ -25,10 +25,13 @@ def make_list_of_string(input):
 				continue
 			try :
 				datetime.datetime.strptime(chats[i].split(",")[0], '%d/%m/%Y')
-			except ValueError:
-				chats[i-1] += " " + chats[i]
-				chats[i] = "\0"
-				count_of_NULLS_added += 1 
+			except ValueError : 
+				try : 
+					datetime.datetime.strptime(chats[i].split(",")[0], '%d/%m/%y')
+				except ValueError:
+					chats[i-1] += " " + chats[i]
+					chats[i] = "\0"
+					count_of_NULLS_added += 1 
 
 	return remove_empty_indexes(chats)
 
