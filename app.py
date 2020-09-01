@@ -20,7 +20,13 @@ def upload_file():
 	if request.method == 'POST':
 		f = request.files['file']
 		contents = f.read()
-		print(contents)
+		contents = str(contents)
+		contents = contents.split("\\n")
+		contents[0] = contents[0][2:]
+		contents[-1] = contents[-1][:-1]
+		for i in range(len(contents)):
+			print(i,": ", contents[i])
+
 		return "done"
 
 if __name__ == '__main__':
