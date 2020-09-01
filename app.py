@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
-import pandas as pd
+# import pandas as pd
 
 app = Flask(__name__)
 
@@ -19,7 +19,7 @@ def index():
 def upload_file():
 	if request.method == 'POST':
 		f = request.files['file']
-		contents = pd.read_csv(secure_filename(f.filename))
+		contents = f.read()
 		print(contents)
 		return "done"
 
