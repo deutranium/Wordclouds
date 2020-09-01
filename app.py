@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 import datetime
-import pandas as pd
+import pandas_implementation
 
 app = Flask(__name__)
 
@@ -49,8 +49,11 @@ def upload_file():
 			except ValueError:
 				break
 
-		for i in range(len(contents)):
-			print(i,": ", contents[i])
+		# for i in range(len(contents)):
+		# 	print(i,": ", contents[i])
+
+		contents = pandas_implementation.get_DataFrame(contents)
+		print(contents.head())
 
 		return "done"
 
