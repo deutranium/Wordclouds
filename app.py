@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
-import datetime
-import pandas_implementation
+from pandas_implementation import *
 
 app = Flask(__name__)
 
@@ -20,41 +19,8 @@ def index():
 def upload_file():
 	if request.method == 'POST':
 		f = request.files['file']
-		contents = f.read()
-		contents = str(contents)
-		contents = contents.split("\\n")
-		contents[0] = contents[0][2:]
-		contents[-1] = contents[-1][:-1]
-		for i in range(len(contents)):
-			print(i,": ", contents[i])
-
-		print("-"*50)
-
-		count_of_NULLS_added = 1
-		while(count_of_NULLS_added!=0):
-			count_of_NULLS_added = 0
-			for i in range(len(contents)):
-				if(contents[i] == "\0"):
-					continue
-				try :
-					datetime.datetime.strptime(contents[i].split(",")[0], '%d/%m/%Y')
-				except ValueError:
-					contents[i-1] += " " + contents[i]
-					contents[i] = "\0"
-					count_of_NULLS_added += 1 
-
-		while True:
-			try:
-				contents.remove("\0")
-			except ValueError:
-				break
-
-		# for i in range(len(contents)):
-		# 	print(i,": ", contents[i])
-
-		contents = pandas_implementation.get_DataFrame(contents)
-		print(contents.head())
-
+		Data_extracted = get_DataFrame(f)
+		print(Data_extracted.head())		
 		return "done"
 
 if __name__ == '__main__':

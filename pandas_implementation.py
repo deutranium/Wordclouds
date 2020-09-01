@@ -1,11 +1,13 @@
 import pandas as pd
+import txt_to_array_of_messages
 
 def clean_data(dirty_Data):
 	return dirty_Data[ dirty_Data['Message'] != 'Missing Text' ]
 
-def get_DataFrame(chats):
-	# Format ofthe messages is 
-	# date, time - Name: Message
+def get_DataFrame(input):
+
+	chats = txt_to_array_of_messages.make_list_of_string(input)
+	
 	dates = [chat.split(',')[0] for chat in chats]
 	times = [chat.split(',')[1].split("-")[0].strip(" ") for chat in chats]
 	names = [chat.split('-')[1].split(":")[0] for chat in chats]
