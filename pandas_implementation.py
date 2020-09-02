@@ -2,7 +2,9 @@ import pandas as pd
 import txt_to_array_of_messages
 
 def clean_data(dirty_Data):
+	dirty_Data['Date'] = pd.to_datetime(dirty_Data['Date'])
 	return dirty_Data[ dirty_Data['Message'] != 'Missing Text' ]
+
 
 def get_DataFrame(input):
 
