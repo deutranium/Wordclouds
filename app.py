@@ -10,21 +10,27 @@ app = Flask(__name__)
 def index():
 	return render_template('index.html')
 
-@app.route('/uploader', methods = ['GET', 'POST'])
+
+@app.route('/', methods = ['POST'])
 def upload_file():
 	if request.method == 'POST':
 		f = request.files['file']
+		f_name = 
 		Data_extracted = get_DataFrame(f)
 		start_date = Data_extracted['Date'].iloc[0]
 		end_date = Data_extracted['Date'].iloc[-1]
-		txt = df_to_text(Data_extracted)
-		wc_created = create_wc(txt)
-		return render_template('uploader.html', name = 'new_plot', url ='/static/WordCloud.png', start_date = start_date)
 
-@app.route('/wc')
-def plz():
-	a = create_wc("ab ab ab ab ab ab ab ab cd cd ef ef ef ef ef ab ab ab ab ab ab ef gh ij kl mn op qr st uv wx wx wx yz")
-	return render_template('plz.html', name = 'new_plot', url ='WordCloud.png')
+		return render_template('index.html', start_date = start_date, end_date = end_date)
+
+
+@app.route('/uploader', methods = ['GET', 'POST'])
+def create_wc():
+	txt = df_to_text(Data_extracted)
+	wc_created = create_wc(txt)
+
+	return render_template('uploader.html', name = 'new_plot', url ='/static/WordCloud.png')
+
+
 
 @app.after_request
 def add_header(response):

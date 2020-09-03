@@ -1,33 +1,23 @@
 var dateSlider = document.getElementById('range');
 
 // -------- Create a list of month names --------
-var months = [
-    "January", "February", "March",
-    "April", "May", "June", "July",
-    "August", "September", "October",
-    "November", "December"
-];
+var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
 
 // -------- Timestamps --------
 function timestamp(str) {
     return new Date(str).getTime();
 }
 
-
 // -------- Setup --------
 noUiSlider.create(dateSlider, {
 // Create two timestamps to define a range.
     range: {
-        min: timestamp('2010'),
-        max: timestamp('2016')
+        min: timestamp(start_date),
+        max: timestamp(end_date)
     },
 
-// Steps of a week
-    step: 7* 24 * 60 * 60 * 1000,
-
-// Two more timestamps indicate the handle starting positions.
-    start: [timestamp('2011'), timestamp('2015')],
-
+    step: 7* 24 * 60 * 60 * 1000, // Steps of a week
+    start: [timestamp(start_date), timestamp(end_date)], // Timestamps for the initial positions
 });
 
 
@@ -48,6 +38,3 @@ function formatDate(date) {
     return months[date.getMonth()] + " " +
         date.getFullYear();
 }
-
-
-
