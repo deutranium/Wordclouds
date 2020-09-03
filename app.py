@@ -15,7 +15,6 @@ def index():
 def upload_file():
 	if request.method == 'POST':
 		f = request.files['file']
-		f_name = 
 		Data_extracted = get_DataFrame(f)
 		start_date = Data_extracted['Date'].iloc[0]
 		end_date = Data_extracted['Date'].iloc[-1]
