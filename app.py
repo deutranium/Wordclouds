@@ -19,7 +19,7 @@ def upload_file():
 		end_date = Data_extracted['Date'].iloc[-1]
 		txt = df_to_text(Data_extracted)
 		wc_created = create_wc(txt)
-		return render_template('plz.html', name = 'new_plot', url ='/static/WordCloud.png')
+		return render_template('uploader.html', name = 'new_plot', url ='/static/WordCloud.png', start_date = start_date)
 
 @app.route('/wc')
 def plz():

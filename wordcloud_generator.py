@@ -9,8 +9,6 @@ from io import BytesIO
 stopwords = set(STOPWORDS)
 
 def create_wc(text):
-	# print(text)
-	# text= "ab ab ab ab ab ab ab ab cd cd ef ef ef ef ef ab ab ab ab ab ab ef gh ij kl mn op qr st uv wx wx wx yz"
 	cloud = WordCloud(background_color = "white", max_words = 200, stopwords = set(STOPWORDS)).generate(text)
 	
 	# plt.figure(1,figsize=(13, 13))
