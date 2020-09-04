@@ -1,4 +1,4 @@
-import datetime
+import datetime, emoji
 
 def remove_empty_indexes(chats):
 	while True:
@@ -7,6 +7,14 @@ def remove_empty_indexes(chats):
 		except ValueError :
 			break
 	return chats
+
+def remove_emojies(in_string):
+	string_without_emojies = ""
+	for each in in_string:
+		if not(each in emoji.UNICODE_EMOJI):
+			string_without_emojies += each
+	# print(string_without_emojies)
+	return string_without_emojies
 
 def make_list_of_string(input):
 	chats = input.read()
