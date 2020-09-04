@@ -1,5 +1,5 @@
 import pandas as pd
-from .txt_to_array_of_messages import *
+from txt_to_array_of_messages import *
 
 def clean_data(dirty_Data):
 	dirty_Data['Date'] = pd.to_datetime(dirty_Data['Date'])
