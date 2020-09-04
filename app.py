@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
-from scripts.pandas_implementation import *
-from scripts.df_text import *
-from scripts.wordcloud_generator import *
+from pandas_implementation import *
+from df_text import *
+from wordcloud_generator import *
 
 app = Flask(__name__)
 
