@@ -1,5 +1,5 @@
 import pandas as pd
-import txt_to_array_of_messages
+from .txt_to_array_of_messages import *
 
 def clean_data(dirty_Data):
 	dirty_Data['Date'] = pd.to_datetime(dirty_Data['Date'])
@@ -8,7 +8,7 @@ def clean_data(dirty_Data):
 
 def get_DataFrame(input):
 
-	chats = txt_to_array_of_messages.make_list_of_string(input)
+	chats = make_list_of_string(input)
 	
 	dates = [chat.split(',')[0] for chat in chats]
 	times = [chat.split(',')[1].split("-")[0].strip(" ") for chat in chats]

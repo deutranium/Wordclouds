@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<link href="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.min.css" rel="stylesheet">
-<script src="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.js"></script>
+<link rel="stylesheet" type="text/css" href="./static/css/style.css">
+<link href="./static/css/nouislider.min.css" rel="stylesheet">
+<script src="./static/js/nouislider.min.js"></script>
 {% endblock %}
 
 
@@ -11,34 +12,40 @@
 	<h1>{% block title %} WhatsApp Wordcloud Generator {% endblock %}</h1>
 
 	{% if end_date %}
-	<script type="text/javascript">
-		start_date = '{{ start_date }}'
-		end_date = '{{ end_date }}'
-	</script>
 
-	<span> File uploaded </span>
+		<div class="alert alert-success" role="alert">
+			Your file has been uploaded successfully
+		</div>
+		<hr>
+		<h2>Wordcloud:</h2><br>
+		<img src="{{url}}">
+		<hr>
+		<div class="container">
+			<h2> Optional Filters </h2>
+			<form action = "http://localhost:5000/uploader" method = "POST" 
+				enctype = "multipart/form-data">
+				<div id="range"></div>
+				<div>Start: <span id="event-start"></span></div>
+				<div> End: <span id="event-end"></span></div>
+				<button type="submit" class="btn btn-primary">Apply</button>
+			</form>
+		</div>
 
-	<form action = "http://localhost:5000/" method = "POST" 
-		enctype = "multipart/form-data">
-		<div id="range"></div>
-		<div>Start: <span id="event-start"></span></div>
-		<div> End: <span id="event-end"></span></div>
 
-		<input type = "submit"/>
-	</form>  
+		<script type="text/javascript">
+			start_date = '{{ start_date }}'
+			end_date = '{{ end_date }}'
+		</script>
 
-	<script type="text/javascript" src="./static/js/slider.js"></script>
-	<script type="text/javascript">
-		console.log('{{ end_date }}');
-	</script>
+		<script type="text/javascript" src="./static/js/slider.js"></script>
 
 	{% else %}
-	<form action = "http://localhost:5000/" method = "POST" enctype = "multipart/form-data">
-		<input type = "file" name = "file" />
-		<input type = "submit"/>
-	</form>
-	<script type="text/javascript"> console.log("{{ file }}"</script>	
-
-	
+	<div class="container">
+		<form action = "http://localhost:5000/" method = "POST" enctype = "multipart/form-data">
+			<input type = "file" name = "file" />
+			<button type="submit" class="btn btn-primary">Upload</button>
+		</form>
+	</div>
+	<!-- <script type="text/javascript"> console.log("{{ file }}")</script>		 -->
 	{% endif %}
 {% endblock %}
