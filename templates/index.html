@@ -25,17 +25,25 @@
 			<form action = "http://localhost:5000/uploader" method = "POST" 
 				enctype = "multipart/form-data">
 				<div id="range"></div>
-				<div>Start: <span id="event-start"></span></div>
-				<div> End: <span id="event-end"></span></div>
+				<div>
+					Start:
+					<br>
+					<form>
+						<input type="date" min={{start_date}} max={{end_date}} value={{start_date}}>
+					</form>
+					<span id="event-start"></span>
+					<br>
+					End:
+					<form>
+						<input type="date" min={{start_date}} max={{end_date}} value={{end_date}}>
+					</form>
+					<span id="event-end"></span>
+					<br>
+				</div>
 				<button type="submit" class="btn btn-primary">Apply</button>
 			</form>
 		</div>
 
-
-		<script type="text/javascript">
-			start_date = '{{ start_date }}'
-			end_date = '{{ end_date }}'
-		</script>
 
 		<script type="text/javascript" src="./static/js/slider.js"></script>
 

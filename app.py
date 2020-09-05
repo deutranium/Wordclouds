@@ -18,9 +18,11 @@ def upload_file():
 		Data_extracted = get_DataFrame(f)
 		txt = df_to_text(Data_extracted)
 		wc_created = create_wc(txt)
-
-		start_date = Data_extracted['Date'].iloc[0]
-		end_date = Data_extracted['Date'].iloc[-1]
+		print(Data_extracted.head())
+		start_date = Data_extracted.Date.iloc[0]
+		print(start_date)
+		end_date = Data_extracted.Date.iloc[-1]
+		print(end_date)
 
 		return render_template('index.html', start_date = start_date, end_date = end_date, url ='/static/WordCloud.png')
 
