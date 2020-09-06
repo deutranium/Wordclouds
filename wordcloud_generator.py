@@ -17,7 +17,7 @@ def create_wc(text):
 	# plt.title('Wordcloud of key')
 	# plt.savefig('./static/WordCloud.png')
 	# plt.close()
-
+	# print(text)
 
 
 	cloud.to_file("./static/WordCloud.png")
@@ -25,5 +25,5 @@ def create_wc(text):
 	return 1
 
 
-a = create_wc("ab ab ab ab ab ab ab ab cd cd ef ef ef ef ef ab ab ab ab ab ab ef gh ij kl mn op qr st uv wx wx wx yz")
+# a = create_wc("ab ab ab ab ab ab ab ab cd cd ef ef ef ef ef ab ab ab ab ab ab ef gh ij kl mn op qr st uv wx wx wx yz")
 # a = a.save("abcdefg")
