@@ -1,5 +1,5 @@
 import pandas as pd
-import re
+import regex as re
 import emoji
 import datetime
 
@@ -44,15 +44,15 @@ def convert_chat_arr(chat):
 
 	for i in chat:
 		try:
-			# chat_arr = re.split(', | - |: ', i)
-			# chat_arr[3] = deEmojify(chat_arr[3])
-
-			# print(chat_arr)
 			chat_arr = []
-			chat_arr.append(i.split(', ')[0])
-			chat_arr.append(i.split(', ')[1].split(' - ')[0])
-			chat_arr.append(i.split(', ')[1].split(' - ')[1].split(':')[0])
-			chat_arr.append(deEmojify("".join(i.split(', ')[1].split(' - ')[1].split(':'))))
+
+			# generates ['', 'date', ', ', 'time', ' - ', 'sender', ': ', 'message', '']
+			matches = re.split('^(.*?)(, | - |: )(.*?)(?!\2)(, | - |: )(.*?)(?!\2|\4)(, | - |: )(.*)', i, re.MULTILINE)
+
+			chat_arr.append(matches[1])	# date
+			chat_arr.append(matches[3]) # time
+			chat_arr.append(matches[5]) # sender
+			chat_arr.append(deEmojify(matches[7])) # message
 			final.append(chat_arr)
 		except:
 			continue
