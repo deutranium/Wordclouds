@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, g
 from werkzeug.utils import secure_filename
 from pandas_implementation import *
 from df_text import *
 from wordcloud_generator import *
 
 app = Flask(__name__)
+print(1)
 
 @app.route('/')
 def index():
@@ -16,6 +17,9 @@ def upload_file():
 	if request.method == 'POST':
 		f = request.files['file']
 		Data_extracted = get_DataFrame(f)
+		if 'db' not in g:
+			g.db = Data_extracted
+		print(g.db.head())
 		txt = df_to_text(Data_extracted)
 		wc_created = create_wc(txt)
 		print(Data_extracted.head())
@@ -27,15 +31,16 @@ def upload_file():
 		return render_template('index.html', start_date = start_date, end_date = end_date, url ='/static/WordCloud.png')
 
 
-@app.route('/uploader', methods = ['POST'])
-def create_display_wc():
-	f = request.files['file']
-	Data_extracted = get_DataFrame(f)
-	txt = df_to_text(Data_extracted)
-	print(txt)
-	# wc_created = create_wc(txt)
+@app.route('/edited', methods = ['POST'])
+def update_display_wc():
 
-	return render_template('uploader.html', name = 'new_plot', url ='/static/WordCloud.png')
+	start_date_new = pd.to_datetime(request.form.get("new start_date"))
+	end_date_new = pd.to_datetime(request.form.get("new end_date"))
+	print("Data_extracted: " + Data_extracted)
+	print(start_date_new, ", ", end_date_new, "*"*100)
+	df_new = Data_extracted[ (Data_extracted.Date>=start_date_new) & (Data_extracted.Date<=end_date_new) ]
+	print(df_new.head())	
+	return render_template('index.html', start_date=start_date_new, end_date=end_date_new, url='/static/WordCloud.png')
 
 
 

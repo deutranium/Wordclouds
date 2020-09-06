@@ -22,25 +22,19 @@
 		<hr>
 		<div class="container">
 			<h2> Optional Filters </h2>
-			<form action = "http://localhost:5000/uploader" method = "POST" 
+			<form action = "/edited" method = "POST" 
 				enctype = "multipart/form-data">
-				<div id="range"></div>
 				<div>
 					Start:
-					<br>
 					<form>
-						<input type="date" min={{start_date}} max={{end_date}} value={{start_date}}>
-					</form>
-					<span id="event-start"></span>
+						<input name="new start_date" type="date" min={{start_date}} max={{end_date}} value={{start_date}}>
 					<br>
 					End:
-					<form>
-						<input type="date" min={{start_date}} max={{end_date}} value={{end_date}}>
-					</form>
-					<span id="event-end"></span>
+						<input name="new end_date" type="date" min={{start_date}} max={{end_date}} value={{end_date}}>
 					<br>
+					<button type="submit" class="btn btn-primary">Apply</button>
+					</form>
 				</div>
-				<button type="submit" class="btn btn-primary">Apply</button>
 			</form>
 		</div>
 
