@@ -17,22 +17,17 @@ def upload_file():
 	if request.method == 'POST':
 		f = request.files['file']
 		g = f.read().decode('utf-8')
-		print(g)
-		Data_extracted = get_DataFrame(f)
-		# if 'db' not in g:
-		# 	g.db = Data_extracted
-		# print(g.db.head())
-		# txt = df_to_text(Data_extracted)
-		# txt = txt.encode().decode('utf-8')
+		Data_extracted = get_DataFrame(g)
 
-		# wc_created = create_wc(txt)
-		# print(Data_extracted.head())
-		# start_date = Data_extracted.Date.iloc[0]
-		# print(start_date)
-		# end_date = Data_extracted.Date.iloc[-1]
-		# print(end_date)
+		txt = df_to_text(Data_extracted)
 
-		return render_template('index.html')#, start_date = start_date, end_date = end_date, url ='/static/WordCloud.png')
+		wc_created = create_wc(txt)
+		start_date = Data_extracted.Date.iloc[0]
+		print(start_date)
+		end_date = Data_extracted.Date.iloc[-1]
+		print(end_date)
+
+		return render_template('index.html', start_date = start_date, end_date = end_date, url ='/static/WordCloud.png')
 
 
 @app.route('/edited', methods = ['POST'])
