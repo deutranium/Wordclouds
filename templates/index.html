@@ -2,8 +2,6 @@
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="./static/css/style.css">
-<link href="./static/css/nouislider.min.css" rel="stylesheet">
-<script src="./static/js/nouislider.min.js"></script>
 {% endblock %}
 
 
@@ -20,24 +18,6 @@
 		<h2>Wordcloud:</h2><br>
 		<img src="{{url}}">
 		<hr>
-		<!-- <div class="container">
-			<h2> Optional Filters </h2>
-			<form action = "/edited" method = "POST" 
-				enctype = "multipart/form-data">
-				<div>
-					Start:
-					<form>
-						<input name="new start_date" type="date" min={{start_date}} max={{end_date}} value={{start_date}}>
-					<br>
-					End:
-						<input name="new end_date" type="date" min={{start_date}} max={{end_date}} value={{end_date}}>
-					<br>
-					<button type="submit" class="btn btn-primary">Apply</button>
-					</form>
-				</div>
-			</form>
-		</div> -->
-
 
 		<script type="text/javascript" src="./static/js/slider.js"></script>
 
@@ -73,6 +53,5 @@
 					</div>
 				</form>
 		</div>
-	<!-- <script type="text/javascript"> console.log("{{ file }}")</script>		 -->
 	{% endif %}
 {% endblock %}
