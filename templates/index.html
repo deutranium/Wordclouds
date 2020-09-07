@@ -11,7 +11,7 @@
 {% block content %}
 	<h1>{% block title %} WhatsApp Wordcloud Generator {% endblock %}</h1>
 
-	{% if end_date %}
+	{% if plot %}
 
 		<div class="alert alert-success" role="alert">
 			Your file has been uploaded successfully
@@ -20,7 +20,7 @@
 		<h2>Wordcloud:</h2><br>
 		<img src="{{url}}">
 		<hr>
-		<div class="container">
+		<!-- <div class="container">
 			<h2> Optional Filters </h2>
 			<form action = "/edited" method = "POST" 
 				enctype = "multipart/form-data">
@@ -36,18 +36,43 @@
 					</form>
 				</div>
 			</form>
-		</div>
+		</div> -->
 
 
 		<script type="text/javascript" src="./static/js/slider.js"></script>
 
 	{% else %}
-	<div class="container">
-		<form action = "http://localhost:5000/" method = "POST" enctype = "multipart/form-data">
-			<input type = "file" name = "file" />
-			<button type="submit" class="btn btn-primary">Upload</button>
-		</form>
-	</div>
+		<div class="container">
+			{% if date_error %}
+				<div class="alert alert-warning" role="alert">
+					Start date can not be greater than end date.
+				</div>
+			{% endif %} 
+			{% if no_element_error %}
+				<div class="alert alert-warning" role="alert">
+					There are no messages in the selected time period. 
+				</div>
+			{% endif %}
+
+
+			<form action = "http://localhost:5000/" method = "POST" enctype = "multipart/form-data">
+				<input type = "file" name = "file" />
+			<br>
+			<br>
+			<h3> Optional Filters: </h3>
+					<div>
+						Start:
+						<form>
+							<input name="start_date" type="date">
+						<br>
+						End :
+							<input name="end_date" type="date" >
+						<br><br>
+						<button type="submit" class="btn btn-primary">Upload</button>
+						</form>
+					</div>
+				</form>
+		</div>
 	<!-- <script type="text/javascript"> console.log("{{ file }}")</script>		 -->
 	{% endif %}
 {% endblock %}
