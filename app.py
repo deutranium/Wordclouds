@@ -18,8 +18,6 @@ def upload_file():
 		Data_extracted = get_DataFrame(decoded)
 		start_date = request.form.get("start_date")
 		end_date = request.form.get("end_date")
-		print(end_date)
-		print(start_date)
 
 
 		if (start_date!='') & (end_date!=''):
