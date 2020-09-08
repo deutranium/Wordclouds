@@ -12,6 +12,9 @@
 		<title>{% block title %} {% endblock %}</title>
 		{% block head %} {% endblock %}
 	</head>
+
+
+
 	<body>
 		<!-- Nav starts -->
 		<nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -23,16 +26,62 @@
 		<!-- Nav ends -->
 
 		<div class="container">
-				{% block content %} {% endblock %}
+			<div class="d-flex flex-wrap justify-content-center align-items-center main-container">
+					
+				<!-- left heading -->
+				<div class="d-flex justify-content-center align-items-center col-md-6">
+					<div>
+						<h1>WhatsApp Wordcloud Generator</h1>
+						<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#instructions_modal">
+							Instructions
+						</button>
+					</div>
+				</div>
+				<!-- end left heading -->
+
+				{% block content %}{% endblock %}
+
+				<!-- Instructions modal -->
+				<div class="modal fade" id="instructions_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLongTitle">Instructions</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								Generate a wordcloud of your WhatsApp chats easily to get a summary of the topics you've talked about.<br>
+								<br>
+								<i style="font-size: 0.7rem">*No chats are stored in the server, the wordcloud however is stored and publicly accessible at <a href="static/WordCloud.png">/static/WordCloud.png</a>*</i>
+								<h4>How to use</h4>
+								<ul>
+									<li>Export your chat using the WhatsApp app on your mobile by going to the options on top right > Export chat</li>
+									<li>Click on 'Browse' and upload this chat file</li>
+									<li>Apply the filters for the dates, which will be considered to select the messages only between that specified range</li>
+									<li>Click on 'Generate'</li>
+								</ul>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Instructions modal end -->
+
+			</div>			
 		</div>
 
 
-		<!-- Footer -->
+		<!-- Footer starts -->
 		<footer>
 				<div class="footer-copyright text-center py-3">Made by
 						<a href="https://github.com/kyabacchahai">Rishabh Khanna</a> and <a href="https://github.com/deutranium">Kshitijaa Jaglan</a>
 				</div>
 		</footer>
+		<!-- Footer end -->
 
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->

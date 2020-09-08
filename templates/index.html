@@ -4,19 +4,9 @@
 <link rel="stylesheet" type="text/css" href="./static/css/style.css">
 {% endblock %}
 
-
+{% block title %} WhatsApp Wordcloud Generator {% endblock %}
 
 {% block content %}
-<div class="d-flex flex-wrap justify-content-center align-items-center main-container">
-		<div class="d-flex justify-content-center align-items-center col-md-6">
-			<div>
-				<h1>{% block title %} WhatsApp Wordcloud Generator {% endblock %}</h1>
-				<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter">
-					Instructions
-				</button>
-			</div>
-		</div>
-
 		{% if plot %}
 			<div class="container col-md-6">
 				<div class="alert alert-success" role="alert">
@@ -56,31 +46,10 @@
 							End :
 								<input name="end_date" type="date" >
 							<br><br>
-							<button type="submit" class="btn btn-primary">Upload</button>
+							<button type="submit" class="btn btn-primary">Generate</button>
 							</form>
 						</div>
 					</form>
 			</div>
 		{% endif %}
-
-	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Instructions</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					...
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-</div>
 {% endblock %}
