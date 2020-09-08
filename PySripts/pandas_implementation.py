@@ -1,9 +1,12 @@
-import pandas as pd
 import regex as re
 import emoji
 import datetime
 
 def deEmojify(txt):
+	"""
+		Given as input string, the function removes all emojies and returns 
+		the input string
+		"""
 	converted=""
 	for each in txt:
 		if each not in emoji.UNICODE_EMOJI:
@@ -24,6 +27,10 @@ def remove_unwanted_texts(txt):
 		return 0
 
 def correct_dateformat(data):
+	"""
+		The function takes in a dataframe and turns the Date coloumn which is 
+		initially in string format and converts it to a DateTime format.
+		"""
 	for i in range(len(data.Date.iloc[:])):
 		if (len(data.Date.iloc[i])==10):
 			data.Date.iloc[i] = pd.to_datetime(data.Date.iloc[i], format="%d/%m/%Y")
@@ -39,7 +46,6 @@ def convert_chat_arr(chat):
 	for i in range(len(chat)):
 		try:
 			cur_date = chat[i].split(',')[0]
-
 			try:
 				datetime.datetime.strptime(cur_date, '%m/%d/%y')
 			except:
@@ -77,6 +83,10 @@ def convert_chat_arr(chat):
 
 
 def get_DataFrame(input):
+	"""	
+		Returnsa Pandas DataFrame from a 2-d list.
+		The order of the comlumns is ["Date", "Time", "Sender", "Message"]
+		"""
 	chat_arr = convert_chat_arr(input)
 	chats = pd.DataFrame(chat_arr, columns=["Date", "Time", "Sender", "Message"])
 	return correct_dateformat(chats)

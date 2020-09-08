@@ -1,3 +1,4 @@
 /env
 __pycache__
 static/wordCloud.png
+PySripts/__pycache__
