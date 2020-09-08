@@ -7,51 +7,58 @@
 
 
 {% block content %}
-	<h1>{% block title %} WhatsApp Wordcloud Generator {% endblock %}</h1>
-
-	{% if plot %}
-
-		<div class="alert alert-success" role="alert">
-			Your file has been uploaded successfully
+<div class="d-flex justify-content-center align-items-center main-container">
+	<div class="d-flex justify-content-center">
+		<div class="d-flex justify-content-center align-items-center">
+			<h1>{% block title %} WhatsApp Wordcloud Generator {% endblock %}</h1>
 		</div>
-		<hr>
-		<h2>Wordcloud:</h2><br>
-		<img src="{{url}}">
-		<hr>
 
-		<script type="text/javascript" src="./static/js/slider.js"></script>
-
-	{% else %}
-		<div class="container">
-			{% if date_error %}
-				<div class="alert alert-warning" role="alert">
-					Start date can not be greater than end date.
+		{% if plot %}
+			<div class="container">
+				<div class="alert alert-success" role="alert">
+					Your file has been uploaded successfully
 				</div>
-			{% endif %} 
-			{% if no_element_error %}
-				<div class="alert alert-warning" role="alert">
-					There are no messages in the selected time period. 
-				</div>
-			{% endif %}
+				<hr>
+				<h2>Wordcloud:</h2><br>
+				<img src="{{url}}">
+				<hr>
+			</div>
 
+			<script type="text/javascript" src="./static/js/slider.js"></script>
 
-			<form action = "/" method = "POST" enctype = "multipart/form-data">
-				<input type = "file" name = "file" />
-			<br>
-			<br>
-			<h3> Optional Filters: </h3>
-					<div>
-						Start:
-						<form>
-							<input name="start_date" type="date">
-						<br>
-						End :
-							<input name="end_date" type="date" >
-						<br><br>
-						<button type="submit" class="btn btn-primary">Upload</button>
-						</form>
+		{% else %}
+			<div class="container">
+				{% if date_error %}
+					<div class="alert alert-warning" role="alert">
+						Start date can not be greater than end date.
 					</div>
-				</form>
-		</div>
-	{% endif %}
+				{% endif %} 
+				{% if no_element_error %}
+					<div class="alert alert-warning" role="alert">
+						There are no messages in the selected time period. 
+					</div>
+				{% endif %}
+
+
+				<form action = "/" method = "POST" enctype = "multipart/form-data">
+					<input type = "file" name = "file" />
+				<br>
+				<br>
+				<h3> Optional Filters: </h3>
+						<div>
+							Start:
+							<form>
+								<input name="start_date" type="date">
+							<br>
+							End :
+								<input name="end_date" type="date" >
+							<br><br>
+							<button type="submit" class="btn btn-primary">Upload</button>
+							</form>
+						</div>
+					</form>
+			</div>
+		{% endif %}
+	</div>
+</div>
 {% endblock %}

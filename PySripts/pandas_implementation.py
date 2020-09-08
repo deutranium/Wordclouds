@@ -1,6 +1,7 @@
 import regex as re
 import emoji
 import datetime
+import pandas as pd
 
 def deEmojify(txt):
 	"""
