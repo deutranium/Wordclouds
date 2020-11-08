@@ -2,6 +2,8 @@
 
 Live: [https://wa-wc.herokuapp.com/](https://wa-wc.herokuapp.com/)
 
+*Works only for chats retrived using WhatsApp installed on an Android device*
+
 ## Setup
 
 Please ensure you have the following installed
